@@ -1,64 +1,46 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
 <head>
 	<title>Canvas</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
-<body>
-	<div class="container">
+  <body>
+    <div class="container">
 		<div class="d-flex justify-content-center">
        		<h2>Ejemplo canvas</h2>
     	</div>
-    	<div class="d-flex justify-content-center">
-       		<canvas id="myCanvas" width="500" height="300" style="border:1px solid #000000;">
+    	<div class="canvas d-flex justify-content-center">
+       		<canvas id="myCanvas" width="1200" height="800" style="border:1px solid #000000;">
     	</div>
 	</div>
-	<script>
-		window.onload = startup;
-			var ballX = 400;
-			var ballY = 400;
-			var mouseX = 0;
-			var mouseY = 0;
-			
-			function startup() {
-				document.getElementById("myCanvas").onmousemove = mouseMove;
-				setInterval("moveBall()",100);
-			
-			}
-			
-			function mouseMove(evt) {
-				mouseX = evt.clientX;
-				mouseY = evt.clientY;
-			}
-			
-			function moveBall() {
-				if (ballX > mouseX) {
-					ballX -= 5;
-				} else {
-					ballX += 5;
-				}
-				if (ballY > mouseY) {
-					ballY -= 5;
-				} else {
-					ballY += 5;
-				}
-				
-				var canvas = document.getElementById("myCanvas");
-				var ctx = canvas.getContext("2d");
-				
-				ctx.clearRect(0, 0, canvas.width, canvas.height);
-				
-				ctx.beginPath();
-				ctx.arc(ballX, ballY, 40, 0, 2* Math.PI);
-				ctx.fillStyle = "green";
-				ctx.fill();
-				ctx.lineWidth = 5;
-				ctx.strokeStyle = "red";
-				ctx.stroke();
-			}
-	</script>
-	
-</canvas>
-</body>
+    <script>
+      var circ;
+
+      function PosicionMouse(canvas, evt) {
+        return {
+          x: evt.clientX,
+          y: evt.clientY
+        };
+      }
+      var canvas = document.getElementById('myCanvas');
+      var ctx = canvas.getContext('2d');
+
+      canvas.addEventListener('mousemove', function(evt) {
+        var mousePos = PosicionMouse(canvas, evt);
+        circ.beginPath();
+        circ.arc(mousePos.x,mousePos.y,20,0,Math.PI*2,false);
+        circ.fill();
+
+      }, false);
+
+      (function(){
+         circ = canvas.getContext('2d');
+         circ.fillStyle ="rgba(191,63,191,1)";  
+             
+      })();
+      
+
+    </script>
+  </body>
 </html>
