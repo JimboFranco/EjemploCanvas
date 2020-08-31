@@ -28,8 +28,9 @@
 
       canvas.addEventListener('mousemove', function(evt) {
         var mousePos = PosicionMouse(canvas, evt);
+
         circ.beginPath();
-        circ.arc(mousePos.x,mousePos.y,20,0,Math.PI*2,false);
+        circ.arc(mousePos.x-60,mousePos.y-50,20,0,Math.PI*2,false);
         circ.fill();
 
       }, false);
